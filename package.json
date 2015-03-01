@@ -1,0 +1,17 @@
+{
+  "name": "oxygen",
+  "version": "0.0.1",
+  "description": "Oxygen Web Framework",
+  "main": "src/application.js",
+  "scripts": {
+    "test": "mocha --compilers js:./test/babel_config"
+  },
+  "author": "Mordy Tikotzky <mordytk@gmail.com>",
+  "license": "MIT",
+  "repository": "tikotzky/oxygen",
+  "devDependencies": {
+    "babel": "^4.6.3",
+    "chai": "^2.1.0",
+    "mocha": "^2.1.0"
+  }
+}
