@@ -16,7 +16,7 @@ import rp from 'request-promise';
 const app = oxygen();
 
 // basic error handling
-app.use(async function(req, res, next){
+app.use(async function(next){
 	try {
 		await next();
 	} catch(e) {
@@ -25,18 +25,17 @@ app.use(async function(req, res, next){
 });
 
 // request logging
-app.use(async function(req, res, next){
+app.use(async function(next){
 	var start = new Date;
 	await next();
 	var ms = new Date - start;
-	console.log('%s %s - %s', req.method, req.url, ms);
+	console.log('%s %s - %s', this.req.method, this.req.url, ms);
 })
 
-app.use(async function(req, res, next){
+app.use(async function(next){
 	const google = await rp('https://www.google.com');
-	res.end(google);
+	this.res.end(google);
 });
 
 app.listen(1337);
-
 ```

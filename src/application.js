@@ -19,14 +19,22 @@ class Application extends EventEmitter {
 
 	callback() {
 		return (req, res) => {
+			const ctx = this.createContext(req, res);
+
 			let idx = 0;
 
 			const next = err => {
-				return this.middleware[idx++](req, res, next);
+				return this.middleware[idx++].call(ctx, next);
 			};
 
 			next();
+		}
+	}
 
+	createContext(req, res) {
+		return {
+			req,
+			res
 		}
 	}
 
