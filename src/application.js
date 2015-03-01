@@ -1,5 +1,6 @@
 import { EventEmitter } from 'events';
 import http from 'http';
+import Context from './context';
 
 class Application extends EventEmitter {
 
@@ -32,10 +33,7 @@ class Application extends EventEmitter {
 	}
 
 	createContext(req, res) {
-		return {
-			req,
-			res
-		}
+		return new Context(req, res);
 	}
 
 }
