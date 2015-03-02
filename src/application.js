@@ -33,7 +33,11 @@ class Application extends EventEmitter {
 	}
 
 	createContext(req, res) {
-		return new Context(req, res);
+		return new Context({
+			this,
+			req,
+			res
+		});
 	}
 
 }

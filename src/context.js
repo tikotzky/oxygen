@@ -1,14 +1,25 @@
 const hidden = new WeakMap();
 
 export default class Context {
-	constructor(req, res) {
+	constructor({app, req, res}) {
 		const privateVariables = {
+			app,
 			req,
-			res
+			res,
+			originalUrl: req.url
 		};
 
 		hidden.set(this, privateVariables);
 
+		this.state = {};
+	}
+
+	get app() {
+		return hidden.get(this).app;
+	}
+
+	get originalUrl() {
+		return hidden.get(this).originalUrl;
 	}
 
 	get req() {
